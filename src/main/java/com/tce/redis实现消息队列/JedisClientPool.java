@@ -3,9 +3,15 @@ package com.tce.redis实现消息队列;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPubSub;
 
 public class JedisClientPool implements JedisClient {
     private JedisPool jedisPool;
+
+    public JedisClientPool(){
+        jedisPool=new JedisPool();
+    }
+
 
 
     @Override
@@ -86,5 +92,11 @@ public class JedisClientPool implements JedisClient {
         Long result = jedis.publish(channel, message);
         jedis.close();
         return result;
+    }
+
+    public void subscribe(JedisPubSub var1, String... var2) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.subscribe(var1, var2);
+        jedis.close();
     }
 }

@@ -9,15 +9,17 @@ public class Producer {
 
     private JedisClientPool jedis;
 
-    public Producer(){
-
+    public Producer(JedisClientPool jedis){
+        this.jedis=jedis;
     }
 
 
-    public void provide(String channel,Message message) throws IOException {
-        String str1=MessageUtil.convertToString(channel,"UTF-8");
-        String str2=MessageUtil.convertToString(message,"UTF-8");
+    public void provide(String channel,String message) throws IOException {
+
+        String str1=channel;
+        String str2=message;
         jedis.publish(str1, str2);
+        System.out.println("消息发布成功！");
     }
 
 }
