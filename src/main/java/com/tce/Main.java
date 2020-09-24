@@ -9,6 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        int x=5,y=5;
+        y=++x*--y;
+        System.out.println(y);
+        System.out.println(x);
         //System.out.println("nmsl");
 //        Thread thread=new Thread(new Runnable() {
 //            @Override
