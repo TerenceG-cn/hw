@@ -2,3 +2,5 @@
 target
 hw.iml
 .idea
+out/
+src/test/
