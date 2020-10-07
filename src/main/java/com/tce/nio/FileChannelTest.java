@@ -13,7 +13,11 @@ public class FileChannelTest {
         RandomAccessFile aFile = new RandomAccessFile("C:\\Users\\10352\\IdeaProjects\\hw\\src\\main\\webapp\\jsp\\data.jsp", "rw");
         //FileChannel 从文件中读写数据
         FileChannel inChannel = aFile.getChannel();
-
+        /**
+         * 流也可以获得channel
+         * FileChannel sourceCh = fileInputStream.getChannel();
+         */
+        //inChannel.truncate(10);
         ByteBuffer buf = ByteBuffer.allocate(48);//分配字节缓存区
 
         int bytesRead = inChannel.read(buf);
@@ -29,6 +33,7 @@ public class FileChannelTest {
             buf.clear();
             bytesRead = inChannel.read(buf);
         }
+        inChannel.close();
         aFile.close();
     }
 }
