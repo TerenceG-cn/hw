@@ -61,7 +61,7 @@ public class LadderMatrix {
             if (Math.abs(matrix.getEntry(i, position)) > Math.abs(max)) {
                 max = matrix.getEntry(i, position);
                 index = i;
-                System.out.println("max:"+max);
+                //System.out.println("max:"+max);
             }
         }
 
@@ -95,12 +95,12 @@ public class LadderMatrix {
         Array2DRowRealMatrix res = new Array2DRowRealMatrix(matrix.getData());
         int maxRow, j;
         for (int i = 0; i < Math.min(matrix.getRowDimension(), matrix.getColumnDimension()); i++) {
-            System.out.println("I:"+i);
+            //System.out.println("I:"+i);
             maxRow = findMax(res, i);//找到i行i列绝对值最大的元素的一行
-            System.out.println("第i行i列最大元素所在行" + (maxRow + 1));
+            //System.out.println("第i行i列最大元素所在行" + (maxRow + 1));
             if (maxRow > i)
                 res=rowReduction2(res, i + 1, maxRow + 1);//交换
-            System.out.println("交换：" + Arrays.deepToString(res.getData()));
+            //System.out.println("交换：" + Arrays.deepToString(res.getData()));
             int tag = (int) res.getEntry(i, i);//此i行第一个不为0的数
             if (tag != 0)
                 for (int l = i + 1; l < rows; l++) {
@@ -112,7 +112,7 @@ public class LadderMatrix {
                         res = rowReduction1(res, -lcm_times_tag, l + 1, i + 1);//把第i行乘以factor加到l行
                     }
                 }
-            System.out.println("--：" + Arrays.deepToString(res.getData()));
+            //System.out.println("--：" + Arrays.deepToString(res.getData()));
         }
         return res;
     }
@@ -159,6 +159,7 @@ public class LadderMatrix {
         //double[][] c = {{1, 3, 5, -4, 0, 1}, {1, 3, 2, -2, 1, -1}, {1, -2, 1, -1, -1, 3}, {1, -4, 1, 1, -1, 3}, {1, 2, 1, -1, 1, -1}};
 
         double[][] c = {{6, 1, 1, 7}, {4,0,4,1}, {1,2,-9,0}, {-1,3,-16,-1}, {2,-4,22,3}};
+
         System.out.println("原矩阵；" + Arrays.deepToString(new Array2DRowRealMatrix(c).getData()));
         System.out.println("阶梯矩阵：" + Arrays.deepToString(toLaddermatrix(new Array2DRowRealMatrix(c)).getData()));
 
